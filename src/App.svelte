@@ -1,58 +1,31 @@
-<script>
-	import { storeUri, apiKey } from "./secret_key"
-	const broadCast = text => {
-		fetch(storeUri, {
-			method: 'POST',	
-			headers: {
-				'x-api-key': apiKey,
-				"content-type": "application/json",
-			},
-			body: JSON.stringify({
-				postedAt: new Date(),
-				action: text
-			})
-		})
-		
-		console.log(text, new Date())
-	}
-
-	const hasArrived = () => {
-		var here = localStorage.getItem("slysh.arrived");
-		if (here != void 0) {
-			return Boolean(here);
-		} else {
-			localStorage.setItem("slysh.arrived", false);
-		}
-	}
+<script lang="ts">
+	import { broadcast } from "./broadcast"
+	import * as ls from "./localStorage.adapter"
 
 	const setArrived = () => {
-		arrived = true;
-		localStorage.setItem("slysh.arrived", true);
-		broadCast("Пришел")
+		arrived = true
+		ls.arrived()
 	}
 
 	const setDeparted = () => {
-		arrived = false;
-		localStorage.setItem("slysh.arrived", false);
-		broadCast("Ушел")
+		arrived = false
+		ls.departed()
 	}
 
 	const submit = (text) => {
-		broadCast(chore)
+		broadcast(chore)
 		submittedChore = chore;
-		chore = '';
+		chore = ''
 	}
 
-	let chore = '';
-	let submittedChore = void 0;
-	let arrived = hasArrived();
-	$: departed = !arrived;
+	let chore = ''
+	let submittedChore = void 0
+	let arrived = ls.hasArrived()
 </script>
 
 <main>
 	<h1>Ну здорово отец</h1>
 
-	
 	<article>
 		{#if !arrived}
 		<div>
