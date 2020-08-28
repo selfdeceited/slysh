@@ -4,15 +4,20 @@
   "version": "0.1.0",
   "description": "(self) time management for dummies",
   "icons": {
-    "128": "favicon.jpg"
+    "128": "favicon.png"
   },
   "background": {
     "persistent": false,
     "scripts": ["background.js"]
   },
-  "permissions": ["https://*.google.com/", "activeTab"],
+  "permissions": [
+    "https://*.google.com/",
+    "activeTab",
+    "storage",
+    "notifications"
+  ],
   "browser_action": {
-    "default_icon": "favicon.jpg",
+    "default_icon": "favicon.png",
     "default_popup": "index.html"
   }
 }
