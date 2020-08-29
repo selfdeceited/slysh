@@ -1,15 +1,7 @@
 /// <reference types="chrome"/>
 import { broadcast } from "./broadcast";
 import { devMode } from "./secret_key";
-
-interface BroadcastOptions {
-  messageText?: string;
-  required?: boolean;
-}
-
-interface IStateMessage {
-  connected: boolean;
-}
+import type { IStateMessage, BroadcastOptions } from "./interfaces";
 
 const storageKey = "slysh.arrived";
 const set = ({ connected }: IStateMessage) => {

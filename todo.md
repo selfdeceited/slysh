@@ -2,9 +2,9 @@
 
 - schedule each N mins
 - show current chore
-- i10n (EN version)
 - typeaheads from db (top options)
 - tags
 - settings to set interval
 - settings to set secrets
+- settings to set language
 - custom icon

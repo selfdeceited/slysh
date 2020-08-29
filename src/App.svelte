@@ -1,4 +1,5 @@
-<script lang="ts" async="true">
+<script lang="ts">
+  import { _ } from "svelte-i18n";
   import { broadcast } from "./broadcast";
   import * as ls from "./localStorage.adapter";
 
@@ -33,13 +34,6 @@
     min-width: 150px;
   }
 
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 1rem;
-    font-weight: 300;
-  }
-
   @media (min-width: 640px) {
     main {
       max-width: none;
@@ -49,36 +43,36 @@
   article {
     text-align: left;
   }
-  label {
-    display: inline-block;
-  }
 </style>
 
 <main>
   <article>
     {#if !arrived}
       <div>
-        <button on:click={setArrived}>Пришел</button>
+        <button on:click={setArrived}>{$_('popup.arrived')}</button>
       </div>
     {/if}
 
     {#if arrived}
       {#if submittedChore}
         <p>
-          Сейчас:
+          {$_('popup.currentChore')}
           <i>
             <u>{submittedChore}</u>
           </i>
         </p>
       {/if}
       <form on:submit|preventDefault={submit}>
-        <input type="text" placeholder="Что делаешь?" bind:value={chore} />
+        <input
+          type="text"
+          placeholder={$_('popup.intentQuestion')}
+          bind:value={chore} />
       </form>
     {/if}
 
     {#if arrived}
       <div>
-        <button on:click={setDeparted}>Ухожу</button>
+        <button on:click={setDeparted}>{$_('popup.departed')}</button>
       </div>
     {/if}
   </article>
