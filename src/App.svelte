@@ -7,7 +7,10 @@
     departed,
     hasArrived,
   } from "./store/connected";
+  import SelectLanguage from "./components/SelectLanguage.svelte";
+  import { adjustLanguage } from "./i18n";
 
+  adjustLanguage();
   const setArrived = async () => {
     arrived = true;
     await getArrived();
@@ -77,4 +80,5 @@
       <div><button on:click={setDeparted}>{$_('popup.departed')}</button></div>
     {/if}
   </article>
+  <SelectLanguage />
 </main>
