@@ -1,7 +1,7 @@
 ### Release-ready checklist:
 
-- schedule each N mins
-- show current chore
+- (+) show current chore
+- localize
 - typeaheads from db (top options)
 - tags
 - settings to set interval

@@ -2,5 +2,6 @@
   "popup.arrived": "Arrived",
   "popup.intentQuestion": "Whatcha doing?",
   "popup.currentChore": "Now:",
-  "popup.departed": "Leaving"
+  "popup.departed": "Leaving",
+  "popup.probablyArrived": "Probably arrived"
 }

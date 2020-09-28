@@ -1,28 +1,38 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import { broadcast } from "./broadcast";
-  import * as ls from "./localStorage.adapter";
+  import { getCurrentChore, setCurrentChore } from "./store/currentChore";
+  import {
+    arrived as getArrived,
+    departed,
+    hasArrived,
+  } from "./store/connected";
 
-  const setArrived = () => {
+  const setArrived = async () => {
     arrived = true;
-    ls.arrived();
+    await getArrived();
   };
 
-  const setDeparted = () => {
+  const setDeparted = async () => {
     arrived = false;
-    ls.departed();
+    await departed();
+    submittedChore = void 0;
+    await setCurrentChore(void 0);
   };
 
-  const submit = (text) => {
+  const submit = async () => {
     broadcast(chore);
     submittedChore = chore;
+    await setCurrentChore(chore);
     chore = "";
   };
 
   let chore = "";
   let submittedChore = void 0;
+
   let arrived = false;
-  ls.hasArrived().then((_) => (arrived = _));
+  hasArrived().then((_) => (arrived = _));
+  getCurrentChore().then((_) => (submittedChore = _));
 </script>
 
 <style>
@@ -48,19 +58,12 @@
 <main>
   <article>
     {#if !arrived}
-      <div>
-        <button on:click={setArrived}>{$_('popup.arrived')}</button>
-      </div>
+      <div><button on:click={setArrived}>{$_('popup.arrived')}</button></div>
     {/if}
 
     {#if arrived}
       {#if submittedChore}
-        <p>
-          {$_('popup.currentChore')}
-          <i>
-            <u>{submittedChore}</u>
-          </i>
-        </p>
+        <p>{$_('popup.currentChore')} <i> <u>{submittedChore}</u> </i></p>
       {/if}
       <form on:submit|preventDefault={submit}>
         <input
@@ -71,9 +74,7 @@
     {/if}
 
     {#if arrived}
-      <div>
-        <button on:click={setDeparted}>{$_('popup.departed')}</button>
-      </div>
+      <div><button on:click={setDeparted}>{$_('popup.departed')}</button></div>
     {/if}
   </article>
 </main>

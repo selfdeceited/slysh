@@ -8,6 +8,7 @@ export interface BroadcastOptions {
   required?: boolean;
 }
 
-export interface IStateMessage {
-  connected: boolean;
+export interface IStateMessage<T> {
+  value: T;
+  key: string;
 }
