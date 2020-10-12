@@ -1,5 +1,5 @@
 import { _ } from "svelte-i18n";
-import type { IStateMessage, BroadcastOptions } from "../interfaces";
+import type { IStateMessage } from "./stateMessage";
 import { setAndBroadcast, get } from "./localStorage.adapter";
 
 const storageKey = "slysh.arrived";
@@ -42,10 +42,3 @@ export const hasArrived = async () => {
     return false;
   }
 };
-
-/*
-
-here true
-bundle.js:15 false
-bundle.js:15 on start if ls does not exist false
-*/

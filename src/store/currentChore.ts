@@ -1,7 +1,7 @@
-import type { IStateMessage } from "../interfaces";
+import type { IStateMessage } from "./stateMessage";
 import { get, set } from "./localStorage.adapter";
 
-export type ChoreMessage = IStateMessage<string>;
+type ChoreMessage = IStateMessage<string>;
 const key = "slysh.currentChore";
 export const getCurrentChore = async () => {
   return await get({ key } as ChoreMessage);
@@ -9,5 +9,5 @@ export const getCurrentChore = async () => {
 
 export const setCurrentChore = async (chore: string) => {
   const choreMessage: ChoreMessage = { value: chore, key };
-  await set(choreMessage);
+  set(choreMessage);
 };

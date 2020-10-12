@@ -1,7 +1,7 @@
-import type { IStateMessage } from "../interfaces";
+import type { IStateMessage } from "./stateMessage";
 import { get, set } from "./localStorage.adapter";
 
-export type LanguageMessage = IStateMessage<string>;
+type LanguageMessage = IStateMessage<string>;
 const key = "slysh.language";
 
 export const getCurrentLanguage = async () => {
@@ -10,5 +10,5 @@ export const getCurrentLanguage = async () => {
 
 export const setCurrentLanguage = async (langCode: string) => {
   const languageMessage: LanguageMessage = { value: langCode, key };
-  await set(languageMessage);
+  set(languageMessage);
 };

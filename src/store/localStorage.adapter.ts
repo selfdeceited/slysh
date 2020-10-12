@@ -1,8 +1,8 @@
 /// <reference types="chrome"/>
-import { broadcast } from "../broadcast";
+import { broadcast } from "../operations/broadcast";
 import { devMode } from "../secret_key";
-
-import type { IStateMessage, BroadcastOptions } from "../interfaces";
+import type { BroadcastOptions } from "../operations/broadcast";
+import type { IStateMessage } from "./stateMessage";
 
 export function set<T>({ value, key }: IStateMessage<T>) {
   console.log(devMode);

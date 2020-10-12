@@ -1,6 +1,12 @@
 <script lang="ts">
   import { locale as localeStore, locales as localesStore } from "svelte-i18n";
   import { setCurrentLanguage } from "../store/language";
+  import {
+    localeContainer,
+    languageSelector,
+    selectedLocale,
+    breakSymbol,
+  } from "./SelectLanguage.styles";
   import localeEmoji from "locale-emoji";
 
   let currentLocale = void 0;
@@ -23,34 +29,17 @@
 </script>
 
 <style>
-  aside {
-    float: right;
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-  }
-  a {
-    cursor: pointer;
-    padding: 0 3px 0 3px;
-    margin: 0 2px 0 2px;
-  }
-  a.selected {
-    border: 1px solid #c57b7b;
-    background-color: #e6d1d1;
-  }
-  span {
-    color: #cccccc;
-  }
 </style>
 
 <!-- svelte-ignore a11y-missing-attribute -->
-<aside>
+<aside class={localeContainer}>
   {#each supportedLocales as locale, i}
     <a
       target="_blank"
-      class={currentLocale.trimmedLocale === locale ? 'selected' : ''}
+      class="{languageSelector} {currentLocale.trimmedLocale === locale ? selectedLocale : ''}"
       on:click={() => setLocale(locale)}>
       {localeEmoji(locale)}
     </a>
-    {#if i !== supportedLocales.length - 1}<span>|</span>{/if}
+    {#if i !== supportedLocales.length - 1}<span class={breakSymbol}>|</span>{/if}
   {/each}
 </aside>

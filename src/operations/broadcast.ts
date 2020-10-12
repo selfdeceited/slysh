@@ -1,5 +1,4 @@
-import { apiKey, devMode, storeUri } from "./secret_key";
-import type { Message } from "./interfaces";
+import { apiKey, devMode, storeUri } from "../secret_key";
 
 export const broadcast = (text: string) => {
   const now = new Date();
@@ -22,3 +21,13 @@ export const broadcast = (text: string) => {
     body: JSON.stringify(message),
   });
 };
+
+export interface BroadcastOptions {
+  messageText?: string;
+  required?: boolean;
+}
+
+export interface Message {
+  postedAt: Date;
+  action: string;
+}
