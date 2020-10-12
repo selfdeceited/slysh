@@ -1,7 +1,7 @@
 ### Release-ready checklist:
 
 - (+) show current chore
-- localize
+- (+) localize
 - typeaheads from db (top options)
 - tags
 - settings to set interval

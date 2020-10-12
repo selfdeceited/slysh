@@ -21,10 +21,10 @@ const set = (connected: boolean, messageText: string) => {
   });
 };
 
-export const arrived = async () =>
+export const markArrived = async () =>
   set(true, await getLocalized("popup.arrived"));
 
-export const departed = async () =>
+export const markDeparted = async () =>
   set(false, await getLocalized("popup.departed"));
 
 export const hasArrived = async () => {

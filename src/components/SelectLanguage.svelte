@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { locale as localeStore, locales } from "svelte-i18n";
+  import { locale as localeStore, locales as localesStore } from "svelte-i18n";
   import { setCurrentLanguage } from "../store/language";
   import localeEmoji from "locale-emoji";
 
@@ -17,7 +17,7 @@
   };
 
   let supportedLocales = [];
-  locales.subscribe((_) => {
+  localesStore.subscribe((_) => {
     supportedLocales = _.filter((x) => x.indexOf("-") === -1);
   });
 </script>

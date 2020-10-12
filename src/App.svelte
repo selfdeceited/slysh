@@ -2,25 +2,26 @@
   import { _ } from "svelte-i18n";
   import { broadcast } from "./broadcast";
   import { getCurrentChore, setCurrentChore } from "./store/currentChore";
-  import {
-    arrived as getArrived,
-    departed,
-    hasArrived,
-  } from "./store/connected";
+  import { markArrived, markDeparted, hasArrived } from "./store/connected";
   import SelectLanguage from "./components/SelectLanguage.svelte";
   import { adjustLanguage } from "./i18n";
+
+  let chore = "";
+  let submittedChore = void 0;
+  let arrived = false;
 
   adjustLanguage();
   const setArrived = async () => {
     arrived = true;
-    await getArrived();
+    await markArrived();
   };
 
   const setDeparted = async () => {
     arrived = false;
-    await departed();
-    submittedChore = void 0;
-    await setCurrentChore(void 0);
+    await markDeparted();
+
+    submittedChore = "";
+    await setCurrentChore("");
   };
 
   const submit = async () => {
@@ -30,10 +31,6 @@
     chore = "";
   };
 
-  let chore = "";
-  let submittedChore = void 0;
-
-  let arrived = false;
   hasArrived().then((_) => (arrived = _));
   getCurrentChore().then((_) => (submittedChore = _));
 </script>
