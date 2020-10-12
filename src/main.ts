@@ -1,4 +1,4 @@
-import App from "./App.svelte";
+import App from "./components/App/App.svelte";
 import { localize } from "./i18n";
 
 localize();

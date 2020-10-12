@@ -6,12 +6,12 @@ Currently only RU language is supported.
 
 ## Local development
 
-create a file `./src/secret_key.ts` with content like:
-
-```js
-export const apiKey = "<your-api-key>"
-export const storeUri = "<your-data-storage>"
-export const devMode = false
+```
+yarn dev
 ```
 
-I use [restdb.io](https://restdb.io/)
+## Real usage (by now)
+
+1. set your `.env` with remote server you need. I use [restdb.io](https://restdb.io/)
+2. `yarn build`
+3. Load `./public` to Chrome [as unpacked extension](https://webkul.com/blog/how-to-install-the-unpacked-extension-in-chrome/)

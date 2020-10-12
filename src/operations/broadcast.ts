@@ -1,4 +1,4 @@
-import { apiKey, devMode, storeUri } from "../secret_key";
+/// <reference types="node" />
 
 export const broadcast = (text: string) => {
   const now = new Date();
@@ -7,15 +7,15 @@ export const broadcast = (text: string) => {
     action: text,
   };
 
-  if (devMode) {
+  if (Boolean(process.env.devMode)) {
     console.log(message);
     return;
   }
 
-  fetch(storeUri, {
+  fetch(process.env.storeUri, {
     method: "POST",
     headers: {
-      "x-api-key": apiKey,
+      "x-api-key": process.env.apiKey,
       "content-type": "application/json",
     },
     body: JSON.stringify(message),

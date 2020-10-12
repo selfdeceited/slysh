@@ -1,12 +1,13 @@
 /// <reference types="chrome"/>
+/// <reference types="node" />
+
 import { broadcast } from "../operations/broadcast";
-import { devMode } from "../secret_key";
 import type { BroadcastOptions } from "../operations/broadcast";
 import type { IStateMessage } from "./stateMessage";
 
 export function set<T>({ value, key }: IStateMessage<T>) {
-  console.log(devMode);
-  if (devMode) {
+  console.log("devMode", Boolean(process.env.devMode));
+  if (Boolean(process.env.devMode)) {
     console.log("set for", key, value);
     localStorage.setItem(key, String(value));
     return;
@@ -19,7 +20,8 @@ export function set<T>({ value, key }: IStateMessage<T>) {
 
 export function get<T>({ key }: IStateMessage<T>): Promise<string> {
   return new Promise((r) => {
-    if (devMode) {
+    console.log("devMode", Boolean(process.env.devMode));
+    if (Boolean(process.env.devMode)) {
       var val = localStorage.getItem(key);
       console.log("get", key, val);
       r(val);

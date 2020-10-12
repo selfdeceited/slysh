@@ -1,8 +1,8 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
-  import { broadcast } from "../operations/broadcast";
-  import { getCurrentChore, setCurrentChore } from "../store/currentChore";
-  import { markArrived, markDeparted, hasArrived } from "../store/connected";
+  import { broadcast } from "../../operations/broadcast";
+  import { getCurrentChore, setCurrentChore } from "../../store/currentChore";
+  import { markArrived, markDeparted, hasArrived } from "../../store/connected";
 
   let chore = "";
   let submittedChore = void 0;

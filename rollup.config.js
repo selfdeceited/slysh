@@ -1,12 +1,20 @@
 import commonjs from "@rollup/plugin-commonjs";
+import dotenv from "dotenv";
 import json from "@rollup/plugin-json";
 import livereload from "rollup-plugin-livereload";
 import replace from "rollup-plugin-replace";
+import { replacer } from "./config.replacer";
 import resolve from "@rollup/plugin-node-resolve";
 import svelte from "rollup-plugin-svelte";
 import sveltePreprocess from "svelte-preprocess";
 import { terser } from "rollup-plugin-terser";
 import typescript from "@rollup/plugin-typescript";
+
+//dotenv.config()
+const dotEnvConfig = { path: `.env${process.env.NODE_ENV ? "" : ".local"}` };
+dotenv.config(dotEnvConfig);
+console.info(`fetching data from ${dotEnvConfig.path}`);
+
 const production = !process.env.ROLLUP_WATCH;
 
 function serve() {
@@ -43,9 +51,7 @@ export default {
     file: "public/build/bundle.js",
   },
   plugins: [
-    replace({
-      "process.env.NODE_ENV": process.env.NODE_ENV,
-    }),
+    replace(replacer()),
     svelte({
       // enable run-time checks when not in production
       dev: !production,

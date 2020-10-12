@@ -1,6 +1,6 @@
 <script lang="ts">
   import { locale as localeStore, locales as localesStore } from "svelte-i18n";
-  import { setCurrentLanguage } from "../store/language";
+  import { setCurrentLanguage } from "../../store/language";
   import {
     localeContainer,
     languageSelector,
