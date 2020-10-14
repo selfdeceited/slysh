@@ -6,8 +6,8 @@ import type { BroadcastOptions } from "../operations/broadcast";
 import type { IStateMessage } from "./stateMessage";
 
 export function set<T>({ value, key }: IStateMessage<T>) {
-  console.log("devMode", Boolean(process.env.devMode));
-  if (Boolean(process.env.devMode)) {
+  console.log("devMode", process.env.devMode === "true");
+  if (process.env.devMode === "true") {
     console.log("set for", key, value);
     localStorage.setItem(key, String(value));
     return;
@@ -20,8 +20,8 @@ export function set<T>({ value, key }: IStateMessage<T>) {
 
 export function get<T>({ key }: IStateMessage<T>): Promise<string> {
   return new Promise((r) => {
-    console.log("devMode", Boolean(process.env.devMode));
-    if (Boolean(process.env.devMode)) {
+    console.log("devMode", process.env.devMode === "true");
+    if (process.env.devMode === "true") {
       var val = localStorage.getItem(key);
       console.log("get", key, val);
       r(val);

@@ -7,7 +7,7 @@ export const broadcast = (text: string) => {
     action: text,
   };
 
-  if (Boolean(process.env.devMode)) {
+  if (process.env.devMode === "true") {
     console.log(message);
     return;
   }
