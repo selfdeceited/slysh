@@ -10,7 +10,6 @@ import sveltePreprocess from "svelte-preprocess";
 import { terser } from "rollup-plugin-terser";
 import typescript from "@rollup/plugin-typescript";
 
-//dotenv.config()
 const dotEnvConfig = { path: `.env${process.env.NODE_ENV ? "" : ".local"}` };
 dotenv.config(dotEnvConfig);
 console.info(`fetching data from ${dotEnvConfig.path}`);
