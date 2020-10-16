@@ -28,13 +28,17 @@
     chore = "";
   };
 
+  const focus = (el) => {
+    el.focus();
+  };
+
   hasArrived().then((_) => (arrived = _));
   getCurrentChore().then((_) => (submittedChore = _));
 </script>
 
-<article>
+<section>
   {#if !arrived}
-    <div><button on:click={setArrived}>{$_('popup.arrived')}</button></div>
+    <button on:click={setArrived}>{$_('popup.arrived')}</button>
   {/if}
 
   {#if arrived}
@@ -45,9 +49,10 @@
       <input
         type="text"
         placeholder={$_('popup.intentQuestion')}
-        bind:value={chore} />
+        bind:value={chore}
+        use:focus />
     </form>
 
     <button on:click={setDeparted}>{$_('popup.departed')}</button>
   {/if}
-</article>
+</section>

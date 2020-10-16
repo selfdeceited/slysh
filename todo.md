@@ -7,5 +7,4 @@
 - tags
 - settings to set interval
 - settings to set secrets
-- settings to set language
 - custom icon

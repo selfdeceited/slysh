@@ -1,5 +1,7 @@
 <script lang="ts">
   import { locale as localeStore, locales as localesStore } from "svelte-i18n";
+  import localeEmoji from "locale-emoji";
+
   import { setCurrentLanguage } from "../../store/language";
   import {
     localeContainer,
@@ -7,7 +9,6 @@
     selectedLocale,
     breakSymbol,
   } from "./SelectLanguage.styles";
-  import localeEmoji from "locale-emoji";
 
   let currentLocale = void 0;
   localeStore.subscribe((fullLocale) => {
