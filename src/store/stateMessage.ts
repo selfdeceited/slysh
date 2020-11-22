@@ -1,4 +1,4 @@
 export interface IStateMessage<T> {
-  value: T;
-  key: string;
+	value: T
+	key: string
 }

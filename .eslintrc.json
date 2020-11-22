@@ -28,6 +28,7 @@
     }
   },
   "rules": {
+    "semi": ["error", "never"],
     "no-shadow": ["error", { "builtinGlobals": true }], // disallow variable declarations from shadowing variables declared in the outer scope
     "no-duplicate-imports": ["error", { "includeExports": true }], // disallow duplicate module imports
     "no-template-curly-in-string": "error", // disallow template literal placeholder syntax in regular strings

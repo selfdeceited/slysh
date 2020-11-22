@@ -1,33 +1,33 @@
 /// <reference types="node" />
 
 export const broadcast = (text: string) => {
-  const now = new Date();
-  const message: Message = {
-    postedAt: now,
-    action: text,
-  };
+	const now = new Date()
+	const message: Message = {
+		postedAt: now,
+		action: text,
+	}
 
-  if (process.env.devMode === "true") {
-    console.log(message);
-    return;
-  }
+	if (process.env.devMode === 'true') {
+		console.log(message)
+		return
+	}
 
-  fetch(process.env.storeUri, {
-    method: "POST",
-    headers: {
-      "x-api-key": process.env.apiKey,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(message),
-  });
-};
+	fetch(process.env.storeUri, {
+		method: 'POST',
+		headers: {
+			'x-api-key': process.env.apiKey,
+			'content-type': 'application/json',
+		},
+		body: JSON.stringify(message),
+	})
+}
 
 export interface BroadcastOptions {
-  messageText?: string;
-  required?: boolean;
+	messageText?: string
+	required?: boolean
 }
 
 export interface Message {
-  postedAt: Date;
-  action: string;
+	postedAt: Date
+	action: string
 }
