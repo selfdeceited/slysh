@@ -1,7 +1,7 @@
 import { addMessages, getLocaleFromNavigator, init, locale } from 'svelte-i18n'
 
 import en from './translations/en.json'
-import { getCurrentLanguage } from './store/language'
+import { getCurrentLanguage } from './persistence/language'
 import ru from './translations/ru.json'
 
 export const localize = async () => {

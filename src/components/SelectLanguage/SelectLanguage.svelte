@@ -2,7 +2,7 @@
 	import { locale as localeStore, locales as localesStore } from 'svelte-i18n'
 	import localeEmoji from 'locale-emoji'
 
-	import { setCurrentLanguage } from '../../store/language'
+	import { setCurrentLanguage } from '../../persistence/language'
 	import { localeContainer, languageSelector, selectedLocale, breakSymbol } from './SelectLanguage.styles'
 
 	let currentLocale = void 0

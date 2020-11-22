@@ -18,18 +18,18 @@ export function set<T>({ value, key }: IStateMessage<T>) {
 	})
 }
 
-export function get<T>({ key }: IStateMessage<T>): Promise<string> {
+export function get<T>({ key }: IStateMessage<T>): Promise<IStateMessage<string>> {
 	return new Promise(r => {
 		console.log('devMode', process.env.devMode === 'true')
 		if (process.env.devMode === 'true') {
 			var val = localStorage.getItem(key)
 			console.log('get', key, val)
-			r(val)
+			r({ key, value: val })
 		}
 
 		chrome.storage.sync.get([key], items => {
 			console.log('get', key, items[key])
-			r(items[key])
+			r({ key, value: items[key] })
 		})
 	})
 }
